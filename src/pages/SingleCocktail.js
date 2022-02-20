@@ -15,7 +15,7 @@ const SingleCocktail = () => {
     async function fetchAndSetCocktail() {
       let response = await fetch(url + id);
       const cocktails = await response.json();
-      setCurrentCocktail(cocktails['drinks'] ? cocktails['drinks'][0] : undefined);
+      setCurrentCocktail(cocktails['drinks']?.[0]);
       setIsLoading(false);
     }
 
@@ -35,7 +35,7 @@ const SingleCocktail = () => {
     return (<h2>No cocktails found</h2>);
   }
 
-  const ingList = [
+  const ingredientList = [
     currentCocktail["strIngredient1"],
     currentCocktail["strIngredient2"],
     currentCocktail["strIngredient3"],
@@ -67,7 +67,7 @@ const SingleCocktail = () => {
           </p>
           <p>
             <span className='drink-data'>Ingredients: </span>
-            {ingList.map((ing, index) => {
+            {ingredientList.map((ing, index) => {
               return ing ? <span key={index}>{ing}</span> : null;
             })}
           </p>
